@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <script>
+if (window.top !== window.self) {
+  window.top.location = window.self.location
+}
+</script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>OCURU</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Baloo+2&display=swap" rel="stylesheet"/>
+</head>
+  
+  <script>
+document.addEventListener('contextmenu', function (e) {
+  e.preventDefault()
+})
+document.addEventListener('keydown', function (e) {
+  if (
+    e.key === 'F12' ||
+    (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C')) ||
+    (e.ctrlKey && e.key === 'U')
+  ) {
+    e.preventDefault()
+  }
+})
+</script>
+
+<body oncopy="return false" oncut="return false" onpaste="return false">
+  <div class="background-lights"></div>
+  <div id="rainbow-stream"></div>
+  <header class="header glow animated-gradient">
+    <div class="logo">✦ OCURU ✦</div>
+    <nav class="nav">
+      <button data-page="home">HOMEPAGE</button>
+      <button data-popup="oc">OCURU</button>
+      <button data-page="kuru">KURU</button>
+      <button data-popup="contact">CONTACT</button>
+    </nav>
+  </header>
+  <main>
+    <div class="loading" id="wipe-effect"></div>
+    <section id="home-page" class="page-section fade-in">
+      <h1>Welcome to OCuru!</h1>
+      <p>This is the homepage of Kuru’s Original Characters collection and story world.</p>
+      <p>This will be a big project I will do in the future.</p>
+    </section>
+
+    <section id="kuru-page" class="page-section hidden fade-in">
+      <h1>About Kuru</h1>
+      <p>
+  Kuru<br>
+  You'll know my real name once I'm famous 😏<br>
+  🎨 Illustrator | Character Designer | Digital Artist<br>
+  📍 Vietnam
+</p>
+
+<p>
+  <strong>WORK</strong><br>
+  I’m a freelance artist with over 3 years of experience in digital art and character design.<br>
+  With a foundation in traditional art combined with digital painting skills, I’ve worked on various projects related to games (not really though), advertising, and media — covering a range of styles from cute, fantasy to modern cyberpunk.<br>
+  I especially love building characters with depth – expressing emotions and storytelling through facial expressions, poses, and costume design.<br>
+  I’ve collaborated (in my imagination) with both local and international clients as a concept artist and illustrator.
+</p>
+
+<p>
+  <strong>Skills:</strong><br>
+  • Digital Painting (Photoshop, MediBang Paint Pro,...)<br>
+  • Character, creature, and background concept art<br>
+  • Costume design and color styling<br>
+  • Visual storytelling<br>
+  • Teamwork in hybrid pipelines (combining Agile/Scrum and Waterfall)
+</p>
+
+<p>
+  <strong>Some featured (imaginary) projects:</strong><br>
+  • Legends of Mythica – RPG (Japan)<br>
+  • Maiya and the Fire Spirits – Personal webcomic<br>
+  • Poster and character branding design for Yume Café campaign<br>
+  <em>Note: All of the above projects are fictional ^^</em>
+</p>
+
+<p>
+  <strong>Languages:</strong><br>
+  • Vietnamese (native)<br>
+  • English (good communication and technical use)<br>
+  • Japanese (N5)
+</p>
+
+<p>
+  Currently, I’m sharpening my skills and looking for collaboration opportunities with studios, creators, or brands seeking to build a unique and meaningful visual world.
+</p>
+
+<p>
+  <strong>LIFE</strong><br>
+  I live a pretty "chill" lifestyle, typical of a graphic design student.<br>
+  I like pancakes, love the colors pink and red, and am super passionate about Pokémon Trading Card Game Live.<br>
+  My dream is to become an illustrator for Pokémon cards.<br>
+  I dislike laziness and unprofessional attitudes in the workplace.
+</p>
+
+    </section>
+  </main>
+
+  <div class="overlay hidden" id="overlay"></div>
+  <div class="popup hidden" id="popup">
+    <button class="close-btn" id="closePopup">×</button>
+    <div class="popup-content" id="popup-content"></div>
+  </div>
+
+  <footer class="footer glow animated-gradient">
+    <p>© 2025 Kuru. All rights reserved.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
