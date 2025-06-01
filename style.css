@@ -1,73 +1,188 @@
-document.addEventListener("DOMContentLoaded", () => {
-  const pages = {
-    home: document.getElementById("home-page"),
-    kuru: document.getElementById("kuru-page"),
-  };
-
-  const overlay = document.getElementById("overlay");
-  const popup = document.getElementById("popup");
-  const popupContent = document.getElementById("popup-content");
-  const wipe = document.getElementById("wipe-effect");
-
-  const ocList = [
-    { name: "Maiya", img: "images/maiya.png", link: "https://example.com/maiya" },
-    { name: "Shia", img: "images/Shia.png", link: "https://example.com/shia" },
-  ];
-
-  const renderOCList = (list) => `
-    <h2>Kuru's OC List</h2>
-    <div class="oc-list">
-      ${list.map(oc => `
-        <div class="oc-item">
-          <a href="${oc.link}" target="_blank">
-            <img src="${oc.img}" alt="${oc.name}" />
-            <span>${oc.name}</span>
-          </a>
-        </div>
-      `).join('')}
-    </div>
-  `;
-
-  const renderContact = () => `
-    <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:LeHongOanh6149@gmail.com">LeHongOanh6149@gmail.com</a></p>
-    <p><a href="https://x.com/d_batapii" target="_blank">✖️Twitter</a></p>
-    <p><a href="https://discord.gg/KRMmRxWy" target="_blank">🎮Discord</a></p>
-    <p><a href="https://osu.ppy.sh/users/24403531" target="_blank">🌸Osu</a></p>
-    <p><a href="https://avple.tv/video/142442246658733" target="_blank">𝘒𝘜𝘙𝘜_𝘐𝘚_𝘏𝘌𝘙𝘌</a></p>
-  `;
-
-  const showPage = (id) => {
-  Object.values(pages).forEach(p => p.classList.add("hidden"));
-  if (pages[id]) pages[id].classList.remove("hidden");
-  wipe.style.transform = "translateX(0)";
-  closePopup();
-};
+/* --- PHẦN CHUNG --- */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Baloo 2', cursive;
+}
 
 
-  const openPopup = (type) => {
-  popupContent.innerHTML = type === "oc" ? renderOCList(ocList) : renderContact();
-  overlay.classList.toggle("hidden", false);
-  popup.classList.toggle("hidden", false);
-  requestAnimationFrame(() => popup.classList.add("show"));
-};
+html, body {
+  height: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #eae4fc, #fceaff);
+  color: #2c2c2c;
+  display: flex;
+  flex-direction: column;
+}
 
-const closePopup = () => {
-  popup.classList.remove("show");
-  setTimeout(() => {
-    overlay.classList.add("hidden");
-    popup.classList.add("hidden");
-  }, 150);
-};
+.background-lights::before {
+  content: '';
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background: url('https://www.transparenttextures.com/patterns/stardust.png');
+  opacity: 0.15;
+  pointer-events: none;
+  z-index: 0;
+}
 
-  document.querySelectorAll("[data-page]").forEach(btn =>
-    btn.addEventListener("click", () => showPage(btn.dataset.page))
-  );
+/* --- HEADER --- */
+.header {
+  padding: 12px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #fff;
+  border-radius: 10px;
+  margin: 20px;
+  backdrop-filter: blur(4px);
+  position: relative;
+  z-index: 5;
+}
 
-  document.querySelectorAll("[data-popup]").forEach(btn =>
-    btn.addEventListener("click", () => openPopup(btn.dataset.popup))
-  );
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  text-shadow: 0 0 5px #fff;
+}
 
-  document.getElementById("closePopup").addEventListener("click", closePopup);
-  overlay.addEventListener("click", closePopup);
-});
+.nav button {
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 16px;
+  margin-left: 20px;
+  cursor: pointer;
+  font-weight: bold;
+  position: relative;
+}
+
+.nav button::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  width: 100%;
+  height: 2px;
+  background: #fff;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.nav button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* --- MAIN --- */
+main {
+  flex: 1;
+  padding: 40px 30px;
+  position: relative;
+  z-index: 3;
+}
+
+.page-section {
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.fade-in {
+  animation: fadeInUp 1s ease;
+}
+
+@keyframes fadeInUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Overlay và popup */
+.popup,
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+}
+
+/* Overlay mờ và blur nền */
+.overlay {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(0.5rem); /* 5px */
+}
+
+/* Popup xuất hiện tĩnh ở giữa bên phải */
+.popup {
+  max-width: 40rem;
+  max-height: 90vh;
+  background: linear-gradient(-45deg, #a89cf9, #f6a4ec, #ffc0cb, #eae4fc);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.2);
+  padding: 5% 3rem;
+  position: absolute;
+  top: 50%;
+  right: 4rem;
+  transform: translate(100%, -50%); /* Bắt đầu từ ngoài bên phải */
+  width: fit-content;
+  min-width: 20rem;
+  border-radius: 1.5rem;
+  opacity: 0;
+  transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+/* Hiện popup: vào giữa */
+.popup.show {
+  opacity: 1;
+  left: 50%;
+  right: auto;
+  transform: translate(-50%, -50%);
+}
+
+/* Ẩn */
+.hidden {
+  display: none;
+}
+
+/* Nút đóng */
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 2.4rem; /* 24px */
+  position: absolute;
+  top: 1rem;   /* 10px */
+  right: 1.5rem; /* 15px */
+  cursor: pointer;
+}
+
+/* Nội dung bên trong */
+.popup-content {
+  margin-top: 3rem; /* 30px */
+}
+
+/* --- FOOTER --- */
+.footer {
+  text-align: center;
+  padding: 15px;
+  color: #ffffff;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* --- GRADIENT ANIMATION --- */
+.glow {
+  box-shadow: 0 0 20px #d3b5ff;
+  transition: background 1s ease;
+}
+
+.animated-gradient {
+  background: linear-gradient(-45deg, #a89cf9, #f6a4ec, #ffc0cb, #eae4fc);
+  background-size: 600% 600%;
+  animation: gradientMove 60s ease infinite;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
