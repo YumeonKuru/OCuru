@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     <p>Email:Kuru6149@gmail.com</p>
     <p><a href="https://x.com/isurokuru">✖️Twitter</a></p>
     <p><a href="https://discord.gg/vrgPwKVM6b" target="_blank">🎮Discord</a></p>
-    <p><a href="https://osu.ppy.sh/users/24403531" target="_blank">🌸Osu</a></p>
   `;
 
   const showPage = (id) => {
