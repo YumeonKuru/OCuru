@@ -30,11 +30,10 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const renderContact = () => `
     <h2>Contact Me</h2>
-    <p>Email: <a href="mailto:LeHongOanh6149@gmail.com">LeHongOanh6149@gmail.com</a></p>
-    <p><a href="https://x.com/d_batapii" target="_blank">✖️Twitter</a></p>
-    <p><a href="https://discord.gg/KRMmRxWy" target="_blank">🎮Discord</a></p>
+    <p>Email:Kuru6149@gmail.com</p>
+    <p><a href="https://x.com/isurokuru">✖️Twitter</a></p>
+    <p><a href="https://discord.gg/vrgPwKVM6b" target="_blank">🎮Discord</a></p>
     <p><a href="https://osu.ppy.sh/users/24403531" target="_blank">🌸Osu</a></p>
-    <p><a href="https://avple.tv/video/142442246658733" target="_blank">𝘒𝘜𝘙𝘜_𝘐𝘚_𝘏𝘌𝘙𝘌</a></p>
   `;
 
   const showPage = (id) => {
